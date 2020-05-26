@@ -3,7 +3,7 @@ Bot for cherry picking commits via pull request from the master branch to the re
 
 ## What does a cherry picker bot do?
 
-Typically the master has a collection of features.  Some in development and some being fixed.  By using the release cutter bot (see below), you can create a feature branch which is nothing more than a sample of the master branch code at a specific point in development.  Once the feature branch has been creaeted, development continues on the master branch.  At some point in time you may feel you want to add the newer features and bug fixes to the release branch you created.  The cherry-picker bot provides a way for you to do that.
+Typically the master has a collection of features.  Some in development and some being fixed.  By using the release cutter bot (see below), you can create a feature branch which is nothing more than a sample of the master branch code at a specific point in development.  Once the feature branch has been created, development continues on the master branch.  At some point in time you may feel you want to add the newer features and bug fixes to the release branch you created.  The cherry-picker bot provides a way for you to do that.
 
 Assuming your master branch has commits that look like this:
 
@@ -24,7 +24,7 @@ This bot is activated by adding two labels on to each pull request.
 
 The first label is "bug", this tells the cherry picker that a bug was fixed or something was added to the master branch that needs to be included in the release branch target.
 
-The second label is the name of the release branch in a very special format.  Chaning this format will cause the cherry-pick to be ignored.  The format is "release/release-x.x".
+The second label is the name of the release branch in a very special format.  Changing this format will cause the cherry-pick to be ignored.  The format is "release/release-x.x".
 
 You should have created your release using the release-cutter bot to add the required formatting to your release to be cherry-picked.  This bot can be found here: https://github.com/multicloud-ops/release-cutter
 
