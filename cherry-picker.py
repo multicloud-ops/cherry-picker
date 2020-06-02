@@ -19,7 +19,7 @@ cherrypick_pr_title="Backport of #{0}: {1}" # to become "Cherry-pick of #pr: {ma
 cherrypicked_indicator="Backport of #{}:"
 release_fix_branch='{0}-backport-{1}'
 # work_dir on bot server
-work_dir='/root/funky-winker-bean/python/'
+work_dir='/root/cherry-picker/'
 dryrun=False
 ENDPOINT = "cherry-picker-bot"
 
@@ -36,7 +36,7 @@ baseurl='https://github.ibm.com/api/v3'
 git = Github(base_url=baseurl, login_or_token=access_token)
 
 
-# Erase the bot_repo folder without regard for errors. 
+# Change to work directory. 
 def change_to_base_path():
     try:
         os.system("cd "+work_dir)
@@ -190,7 +190,7 @@ def get_bot_fork(upstream_repo):
     
     
 def process_cherry_pick(repo, pr_number, upstream_repo_url, upstreamorg, pr_title, release):
-    logging.info("************************************* STARTING NEW JOB ***************************************")
+    logging.info("****** STARTING NEW CHERRY-PICK ******")
     # Create a connection object to github upstream repo
     upstream_repo = git.get_repo("%s/%s" % (upstreamorg, repo))
     pr=upstream_repo.get_pull(pr_number)
@@ -277,8 +277,8 @@ class PayloadView(object):
                             else:
                                 return Response("cherry-pick failure")          
         else:
-            logging.error("Failed to process pull request.  Payload data incorrect to trigger this action.")
-            return Response("No cherry-pick possible with the given data")
+            logging.error("Failed to process pull request.  Payload json data incorrect to trigger this action.")
+            return Response("No cherry-pick possible with the current pr json data")
             
                                  
 if __name__ == "__main__":
