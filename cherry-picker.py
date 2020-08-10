@@ -15,22 +15,22 @@ bug_label_prefix='bug'
 release_label_prefix='release/'
 release_version_label_prefix='release-'
 bot_org='cp4mcmbo'
-cherrypick_pr_title="Backport of #{0}: {1}" # to become "Cherry-pick of #pr: {master pr subject}"
-cherrypicked_indicator="Backport of #{}:"
-release_fix_branch='{0}-backport-{1}'
+cherrypick_pr_title="Cherry-pick of #{0}: {1}" # to become "Cherry-pick of #pr: {master pr subject}"
+cherrypicked_indicator="Cherry-pick of #{}:"
+release_fix_branch='{0}-cherrypick-{1}'
 # work_dir on bot server
 work_dir='/root/cherry-picker/'
 dryrun=False
 ENDPOINT = "cherry-picker-bot"
 
-logname='backportbot.log'
+logname='cherry-picker.log'
 logging.basicConfig(filename=logname,
                             filemode='a',
                             format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
                             datefmt='%H:%M:%S',
                             level=logging.INFO)
 
-# Check which PRs are candidates for back porting
+# Check which PRs are candidates for cherry picking
 access_token='7e9d454f1aad786b89f23433830728973601fd64'
 baseurl='https://github.ibm.com/api/v3'
 git = Github(base_url=baseurl, login_or_token=access_token)
@@ -152,7 +152,7 @@ def push_botfork(branch):
 
 # Open a pull request to push changes up to the release
 def open_pr(branch, pr_title, pr_number, release, upstream_repo):
-    body = "Automatic back-port"
+    body = "Automatic cherry-pick"
     title = cherrypick_pr_title.format(pr_number, pr_title)  
     # Strip off leading release/ prefix
     release=release.replace('release/', '')
