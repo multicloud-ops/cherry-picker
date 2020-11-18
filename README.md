@@ -17,6 +17,10 @@ If you want to add a new feature "6" that is critical to your release branch, th
 
 1 - 2 - 3 - 6
 
+## Bot Setup
+
+You can use the build harness command defined [here](https://github.com/multicloud-ops/build-harness-extensions/blob/f49d2c007bf11f78f586b00ae6a88dfa41f3ab48/modules/github/Makefile#L36) to setup the bot. 
+
 
 ## How to activate this bot.
 
